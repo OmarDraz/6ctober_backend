@@ -55,7 +55,7 @@ Category.getCategory = (categoryId, result) => {
 }
 
 Category.addCategory = (data, file, result) => {
-    conn.query("INSERT INTO categories (ar_name, en_name, image) VALUES (?, ?, ?)", [data.ar_name, data.en_name, `http://127.0.0.1:3000/productsImages/${file ? file.originalname : 'default.jpg'}`], (err, res) => {
+    conn.query("INSERT INTO categories (ar_name, en_name, image) VALUES (?, ?, ?)", [data.ar_name, data.en_name, `${process.env.HOST}/productsImages/${file ? file.originalname : 'default.jpg'}`], (err, res) => {
         if(err){
             console.log("Error In Adding CategorY")
             result(null, err)
@@ -67,7 +67,7 @@ Category.addCategory = (data, file, result) => {
 }
 
 Category.updateCategory = (categoryId, data, file, result) => {
-    conn.query("UPDATE categories SET ar_name = ?, en_name = ?, image = ? WHERE id = ?", [data.ar_name, data.en_name, `http://127.0.0.1:3001/productsImages/${file ? file.originalname : 'default.jpg'}`, +categoryId], (err, res) => {
+    conn.query("UPDATE categories SET ar_name = ?, en_name = ?, image = ? WHERE id = ?", [data.ar_name, data.en_name, `${process.env.HOST}/productsImages/${file ? file.originalname : 'default.jpg'}`, +categoryId], (err, res) => {
         if(err){
             console.log("Error In Updating CategorY")
             result(null, err)

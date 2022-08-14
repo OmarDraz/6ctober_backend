@@ -7,7 +7,7 @@ var Statistics = function(statistic){
 }
 
 Statistics.getAll = (result) => {
-    conn.query("select day,count(*) as da from statistics group by day", (err, res) => {
+    conn.query("select day, SUM(persons) AS da group by day", (err, res) => {
         if(err){
             console.log("Error In Fetching statistics")
             result(null, err)

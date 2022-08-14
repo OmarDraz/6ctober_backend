@@ -18,9 +18,9 @@ var upload = multer({
 
 const productController = require('../controllers/products.controller')
 
-router.get('/category/:id', productController.getProducts)
+router.get('/category/:id', productController.getCatProducts)
 
-router.get('/:id', productController.getProducts)
+router.get('/:id', productController.getProduct)
 
 router.post('/add_product', upload.single('image'), productController.addProduct)
 

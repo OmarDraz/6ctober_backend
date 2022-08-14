@@ -1,7 +1,7 @@
 const ProductModel = require('../models/products.model')
 
-exports.getProducts = (req, res) => {
-    ProductModel.getProducts(req.params.id, (err, products) => {
+exports.getCatProducts = (req, res) => {
+    ProductModel.getCatProducts(req.params.id, (err, products) => {
         if(err)
         res.send(err)
         console.log('Products', products);
@@ -24,7 +24,7 @@ exports.addProduct = (req, res) => {
         if(err){
             res.send(err)
         }
-        res.json({status: true, message: "Created Successfully", id: product.insertId})
+        res.json({status: true, message: "تم اضافة المنتج بنجاح", id: product.insertId})
     })
 }
 

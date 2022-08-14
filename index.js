@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     socket.on('client', (data) => {
         console.log(data)
         socket.broadcast.emit('recieve_clients', data)
-        conn.query("INSERT INTO statistics (name, day, phone) VALUES (?, ?, ?)", [data.name, today, data.phone], (err, res) => {
+        conn.query("INSERT INTO statistics (name, day, phone, persons) VALUES (?, ?, ?, ?)", [data.name, today, data.phone, +data.persons], (err, res) => {
             if(err){
                 console.log('Error While Adding', err)
             } else {
