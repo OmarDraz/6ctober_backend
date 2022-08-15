@@ -37,7 +37,7 @@ Product.getProducts = (productId, result) => {
 
 Product.addProduct = (data, file, result) => {
     console.log(file)
-    conn.query("INSERT INTO products (ar_name, ar_description, en_name, en_description, calories, category, price, image) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )", [data.ar_name, data.ar_description, data.en_name, data.en_description, data.calories, data.category, data.price, `${process.env.HOST}/productsImages/${file ? file.originalname : 'default.jpg'}`], (err, res) => {
+    conn.query("INSERT INTO products (ar_name, ar_description, en_name, en_description, calories, category, price, image) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )", [data.ar_name, data.ar_description, data.en_name, data.en_description, data.calories, data.category, data.price, `${process.env.HOST}/uploads/${file ? file.originalname : 'default.jpg'}`], (err, res) => {
         if(err){
             console.log('Error While Adding', err)
             result(null, err)
@@ -49,7 +49,7 @@ Product.addProduct = (data, file, result) => {
 }
 
 Product.updateProduct = (productId, data, file, result) => {
-    conn.query("UPDATE products SET ar_name = ?, ar_description= ?, en_name = ?, en_description = ?, calories = ?, category = ?, price = ?, image = ? WHERE id = ?", [data.ar_name, data.ar_description, data.en_name, data.en_description, data.calories, data.category, data.price, data.image ? data.image : `${process.env.HOST}/productsImages/${file ? file.originalname : 'default.jpg'}`, productId], (err, res) => {
+    conn.query("UPDATE products SET ar_name = ?, ar_description= ?, en_name = ?, en_description = ?, calories = ?, category = ?, price = ?, image = ? WHERE id = ?", [data.ar_name, data.ar_description, data.en_name, data.en_description, data.calories, data.category, data.price, data.image ? data.image : `${process.env.HOST}/uploads/${file ? file.originalname : 'default.jpg'}`, productId], (err, res) => {
         if(err){
             console.log('Error While Updating', err)
             result(null, err)

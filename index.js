@@ -1,13 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const path = require('path') 
+require('dotenv').config()
 const cors = require('cors')
-const http = require('http')
-const { Server } = require("socket.io")
 const port = process.env.PORT || 3001
 var conn = require('./config/db')
-
 
 const server = app.listen(port, () => {
     console.log('Server Listening')
@@ -50,6 +47,9 @@ io.on("connection", (socket) => {
             }
         })
     })
+    socket.on('welcome', (name) => {
+        socket.broadcast.emit('recieve_client', name)
+    })
 })
 
 const userRoutes = require('./src/routes/users.routes')
@@ -63,4 +63,7 @@ app.use('/api/products', productRoutes)
 
 const statisticsRoutes = require('./src/routes/statistics.routes')
 app.use('/api/statistics', statisticsRoutes)
+
+const mediaRoutes = require('./src/routes/media.routes');
+app.use('/api/media', mediaRoutes)
 
