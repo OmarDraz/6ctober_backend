@@ -4,7 +4,9 @@ var Category = function(category) {
     this.ar_name = category.ar_name,
     this.en_name = category.en_name,
     this.image = category.image
+    this.dd = category.dd
 }
+
 
 Category.getAllCategories = (result) => {
     conn.query("SELECT * FROM categories", (err, res) => {
