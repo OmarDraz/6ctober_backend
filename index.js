@@ -15,7 +15,7 @@ const io = require('socket.io')(server);
 app.use(express.static('public'))
 
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin:'https://main--sweet-semolina-ec5c51.netlify.app/', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
